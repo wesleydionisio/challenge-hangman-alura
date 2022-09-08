@@ -9,7 +9,7 @@ var btn = document.getElementById("add-phrase");
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
-    
+
   modal.classList.toggle("modal-active");
 
 }
