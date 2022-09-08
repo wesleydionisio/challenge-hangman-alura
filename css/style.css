@@ -59,7 +59,7 @@ html {
 		transform: translatey(0px);
 	}
 	50% {
-		transform: translatey(35    px);
+		transform: translatey(25px);
 	}
 	100% {
 		transform: translatey(0px);
@@ -72,6 +72,8 @@ body {
     background-repeat: repeat-y;
     height: 100vh;
     overflow: hidden;
+    transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+
 
 }
 
@@ -99,9 +101,8 @@ header {
     width: 100%;
     height: 45px;
     background: rgba(0, 0, 0, 0.06);
-    box-shadow: var(--defaultShadow);
+    box-shadow: var(--defaultShadow),  inset -0.5px -0.5px 2px -1px #ffffff;;
     backdrop-filter: blur(5px);
-
 
 }
 
@@ -125,7 +126,7 @@ main {
 
 }
 
-.game-Title {
+.title {
 
     color: white;
     text-align: center;
@@ -179,8 +180,8 @@ main {
     background-color: transparent;
     width: 100%;
     height: 55px;
-    box-shadow: 10px 10px 21px -10px rgb(0 0 0 / 50%), inset 0.25px 0.25px 2px -1px #ffffff;
-    backdrop-filter: blur(5px);
+    box-shadow: 10px 10px 21px -10px rgb(0 0 0 / 50%), inset 1px 1px 2px -1px #ffffff;
+    backdrop-filter: blur(3px);
     font-size: 28px;
     border-radius: 40px;
     color: white;
@@ -189,8 +190,38 @@ main {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
 
 }
+
+.primary-button:hover {
+    background-color: #ffffff0f;
+    backdrop-filter: blur(6px);
+    box-shadow: 10px 15px 21px -10px rgb(0 0 0 / 50%), inset 0.5px 0.5px 2px -1px #ffffff;
+
+
+}
+
+.primary-button:active {
+
+    box-shadow: 10px 15px 21px -10px rgb(0 0 0 / 50%), inset 0.5px 0.5px 2px -1px #ffffff;
+    background-color: var(--defaultColor);
+
+}
+
+.primary-button::before, header::before, .modal::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content:''; 
+    background-image: url(../img/noise.png);
+
+}
+
 
 .button-icon {
 
@@ -198,3 +229,68 @@ main {
 
 }
 
+.modal {
+    
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 35px;
+    animation: fade .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    
+
+
+}
+
+.modal-active {
+    
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000046;
+    backdrop-filter: blur(5px);
+    
+
+}
+
+.add-phrase-container {
+    
+    display: flex;
+    width: 100%;
+    height: 600px;
+    background-color: var(--defaultColor);
+    color: white;
+    border-radius: 13px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    animation: scaleUp .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    box-shadow: 10px 10px 21px -10px rgb(0 0 0 / 50%), inset 1px 1px 2px -1px #ffffff;
+
+
+}
+
+@keyframes scaleUp {
+    0% {
+      transform:scale(.8) translateY(1000px);
+      opacity:0;
+    }
+    100% {
+      transform:scale(1) translateY(0px);
+      opacity:1;
+    }
+  }
+
+  @keyframes fade {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }

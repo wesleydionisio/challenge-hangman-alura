@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,6 @@
     <title>Salve o Astronauta</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
-    <script type="text/javascript" src="js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
@@ -19,25 +18,25 @@
 
 
     <header>
-        <div class="logo-icon"><img src="/img/logo-icon.svg"></div>
+        <div class="logo-icon"><img src="img/logo-icon.svg"></div>
     </header>
 
     <main>
 
-        <section class="game-Title">
+        <section class="title">
             <h1>SALVE O <strong>ASTRONAUTA</strong></h1>
             <h2>JOGO DA FORCA</h2>
         </section>
 
         <section class="astronaut">
 
-            <div id="astronaut-home"><img src="/img/astronaut-home.svg"></div>
+            <div id="astronaut-home"><img src="img/astronaut-home.svg"></div>
 
         </section>
 
         <div class="row-buttons">
 
-            <button id="start" class="primary-button">COMEÇAR</button>
+            <button id="start" class="primary-button" onclick="location.href='game.html'">COMEÇAR</button>
 
             <button id="add-phrase" class="primary-button">ADICIONAR PALAVRA</button>
 
@@ -45,10 +44,25 @@
 
         <div class="row-2-buttons">
 
-            <button id="about" class="primary-button">SOBRE<img src="img/info-icon.svg" class="button-icon"></button>
+            <button id="about" class="primary-button" onclick="location.href='about.html'">SOBRE<img src="img/info-icon.svg" class="button-icon"></button>
 
-            <button id="copy" class="primary-button">COPIAR LINK<img src="img/copy-icon.svg"
+            <button id="copy" class="primary-button" onclick="location.href='#  '">COPIAR LINK<img src="img/copy-icon.svg"
                     class="button-icon"></button>
+
+        </div>
+
+        <div id="modal-add-phrase" class="modal">
+
+            <section class="add-phrase-container">
+
+                <section class="title">
+                <h1>ADICIONE PALAVRAS</h1>
+                <h2>ÓTIMO PARA JOGAR COM OS AMIGOS!</h2>
+                </section>
+
+
+
+            </section>
 
         </div>
 
@@ -63,5 +77,8 @@
     </div>
 
 </body>
+
+<script type="text/javascript" src="js/script.js"></script>
+
 
 </html>
