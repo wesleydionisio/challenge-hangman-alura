@@ -13,6 +13,7 @@ html {
     --blackTransparent: #0000000F;
     --roundedRadius: 500px;
     --roundedBox: 6px;
+    --footerHeight: 85px;
 
 
 }
@@ -28,13 +29,14 @@ html {
         --gap: 20px;
         --padding: 20px;
         --modal-width: 60vh;
+        --letter-box-width: 30px;
+        --letter-box-height: 40px;
     }
 
     main {
 
-        min-height:fit-content;
-        height: 100vh;
-
+        height: 100%;
+        min-height: min-content;
 
     }
 
@@ -77,6 +79,8 @@ html {
         }
 
 
+
+
 }
 
 /* Desktop */
@@ -90,7 +94,13 @@ html {
         --gap: 30px;
         --padding: 40px;
         --modal-width: 90vh;
+        --letter-box-width: 50px;
+        --letter-box-height: 60px;
+    }
 
+    main {
+
+        height: calc(100vh - (var(--footerHeight) + var(--headerHeight)));
 
     }
 
@@ -134,11 +144,18 @@ html {
     
         }
 
+
+    .game-container {
+
+        width: 600px;
+
+    }
+
 }
 
 
 body {
-
+    min-height: 100%;
     background: linear-gradient(180deg, #2D5CA8 19.27%, #81B1FF 100%);
     background-attachment: fixed;
     background-size: 100%;
@@ -161,6 +178,7 @@ h2 {
 
 header {
     
+
     display: flex;
     padding: 0 var(--padding) 0 var(--padding) !important;
     width: 100%;
@@ -179,6 +197,7 @@ header {
     position: absolute;
     display: block;
     float: left;
+    cursor: pointer;
 
 }
 
@@ -196,7 +215,7 @@ header {
 
 .logo-icon:hover {
 
-    transform: scale(1.1);
+    transform:rotate(20deg);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 
 }
@@ -494,10 +513,10 @@ main {
 
 .box-letter {
 
-    width: 30px;
-    height: 40px;
+    width: var(--letter-box-width);
+    height: var(--letter-box-height);
     display: flex;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.116);
     box-shadow: 10px 10px 21px -10px rgba(0, 0, 0, 0.5), inset 0.25px 0.25px 2px -1px #FFFFFF;
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
@@ -510,8 +529,7 @@ main {
     gap: 10px;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    cursor:crosshair;
-    font-size: xx-large;
+    font-size: 2.4em;
 }
 
 .wrong {
@@ -535,6 +553,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-top: 10px;
 
 }
 
@@ -561,13 +580,42 @@ main {
     gap: 10px;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    cursor:crosshair;
+    cursor:pointer;
     font-size: xx-large;
 }
 
+.box-keyboard:hover {
 
+    background-color: var(--secundaryColor);
 
+}
 
+.box-keyboard:active {
+
+    background-color: var(--secundaryColor);
+
+}
+
+.used {
+
+    background-color: grey;
+    cursor:not-allowed;
+
+}
+
+.used:hover {
+
+    background-color: grey;
+
+}
+
+.game-container {
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+
+}
 
 
 
@@ -641,9 +689,11 @@ main {
 }
 
 footer {
+    
+
     width: 100%;
     background-color: var(--defaultColor);
-    height: 85px;
+    height: var(--footerHeight);
     flex-direction: column;
     align-items: center;
     display: flex;
