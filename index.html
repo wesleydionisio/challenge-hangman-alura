@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#2d5ca8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salve o Astronauta</title>
+    <Link rel="icon" href="/img/favicon.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,63 +19,106 @@
 
 
     <header>
-        <div class="logo-icon"><img src="img/logo-icon.svg"></div>
+        <div class="logo-icon"><a href="/index.html"><img src="img/logo-icon.svg"></a></div>
     </header>
 
     <main>
 
-        <section class="title">
+        <section class="section-home title">
             <h1>SALVE O <strong>ASTRONAUTA</strong></h1>
             <h2>JOGO DA FORCA</h2>
         </section>
 
+        <div class="col-2-content">
         <section class="astronaut">
 
-            <div id="astronaut-home"><img src="img/astronaut-home.svg"></div>
+            <div id="astronaut-home">
+                <img src="img/astronaut-home.svg">
+            </div>
 
-        </section>
+        </section> 
 
+        <div class="col-buttons">
         <div class="row-buttons">
 
             <button id="start" class="primary-button" onclick="location.href='game.html'">COMEÇAR</button>
 
-            <button id="add-phrase" class="primary-button">ADICIONAR PALAVRA</button>
+            <button id="add-word" class="primary-button">ADICIONAR PALAVRA</button>
 
         </div>
 
         <div class="row-2-buttons">
 
-            <button id="about" class="primary-button" onclick="location.href='about.html'">SOBRE<img src="img/info-icon.svg" class="button-icon"></button>
+            <button id="about" class="primary-button" onclick="location.href='#'">SOBRE<img src="img/info-icon.svg" class="button-icon"></button>
 
-            <button id="copy" class="primary-button" onclick="location.href='#  '">COPIAR LINK<img src="img/copy-icon.svg"
-                    class="button-icon"></button>
+            <button id="copy" class="primary-button" onclick="location.href='#'">LINK<img src="img/copy-icon.svg" class="button-icon"></button>
 
         </div>
 
-        <div id="modal-add-phrase" class="modal">
+    </div>
 
-            <section class="add-phrase-container">
 
+        <div id="modal-add-word" class="modal">
+            <span class="close">&times;</span>
+
+            <section class="add-word-container">
                 <section class="title">
                 <h1>ADICIONE PALAVRAS</h1>
                 <h2>ÓTIMO PARA JOGAR COM OS AMIGOS!</h2>
                 </section>
 
+                <section class="section-form-add-word">
 
+                    <form action="#" method="post">
+                        
+                        <label class="label-add-word" for="add-word">Tema</label>
+                        <input class="input-add-word" type="text" id="add-word" placeholder="Tema da palavra" required> 
+
+                        <label class="label-add-word" for="add-word-theme">Palavra</label>
+                        <input class="input-add-word" type="text" id="add-word-theme" placeholder="Palavra" required>
+
+                        <button type="submit" class="secundary-button">Salvar</button>
+
+                    </form>
+
+                </section>
 
             </section>
 
         </div>
 
+        </div>
+
+
+
+<div id="bg-stars">
+        <div class="stars-wrapper">
+
+        </div>
+    
+        <div class="stars-wrapper2">
+    
+        </div>
+    </div>
+
     </main>
 
-    <div class="stars-wrapper">
+    <footer>
+        
+        <div class="logo-alura">
 
-    </div>
+            <img src="img/alura-logo-text.svg">
 
-    <div class="stars-wrapper2">
+        </div>
 
-    </div>
+        <div class="footerTab">
+
+            <span>Por: Wesley Dionisio | Curso Oracle One - T3 | 2022</span>
+
+        </div>
+
+    </footer>
+    
 
 </body>
 
