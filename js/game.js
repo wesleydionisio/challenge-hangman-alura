@@ -6,29 +6,31 @@ let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord;
 
+console.log(userWordParsed);
+
 
 const words = [ //Array com os objectos constando a palavra (word) e Dica (tip)
 
-    word1 = {
+    {
 
         word: 'astronauta',
         tip: 'Já foi para o espaço!'
 
     },
 
-    word2 = {
+    // {
 
-        word: 'caderno',
-        tip: 'Sempre vem vazio!'
+    //     word: 'caderno',
+    //     tip: 'Sempre vem vazio!'
 
-    },
+    // },
 
-    word3 = {
+    // {
 
-        word: 'celular',
-        tip: 'Se usa com as mãos ou com os olhos?'
+    //     word: 'celular',
+    //     tip: 'Se usa com as mãos ou com os olhos?'
 
-    }
+    // }
 
 
 ]
@@ -108,10 +110,8 @@ function checkIfKeyMatches(key) {
         switch (checkGameStatus()) {
 
             case false:
-                alert("Perdeu");
                 break;
             case true:
-                alert("Venceu!")
                 break;
         }
 
@@ -123,13 +123,14 @@ function checkGameStatus() {
 
 
     if (attempts == 0) {
+        document.getElementById('keyboard-boxes').classList.add('disabled')
         gameActive = false
         return false;
 
     }
 
     else if (dynamicList.join('').toLocaleString() == secretWord.toLowerCase()) {
-
+        document.getElementById('keyboard-boxes').classList.add('disabled')
         gameActive = false
         return true;
 
@@ -137,3 +138,4 @@ function checkGameStatus() {
 
 
 }
+

@@ -609,6 +609,13 @@ main {
 
 }
 
+.disabled > div {
+
+    pointer-events: none;
+    filter: blur(2px);
+
+}
+
 .successKey,
 .successKey:hover {
 
