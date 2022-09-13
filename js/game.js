@@ -1,15 +1,15 @@
 let gameActive = true;
 let attempts = 6;
-let dynamicList = []; //Lista dinâmica
-let dynamicWrongLettersList = []; //Lista dinâmica
+let dynamicList = []; //Lista dinâmica para comparação
+let dynamicWrongLettersList = []; //Lista dinâmica com as letras erradas
 let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
-let splittedSecretWord;
+let splittedSecretWord; //Palvra escolhida divida em letras
+let astronautEstate = '<img src="img/astronaut_0.svg">'
 
-console.log(userWordParsed);
 
 
-const words = [ //Array com os objectos constando a palavra (word) e Dica (tip)
+const words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
@@ -98,11 +98,34 @@ function checkIfKeyMatches(key) {
             changeButton(keyy, 'successKey');
 
         } else if (gameActive == true & dynamicWrongLettersList.includes(keyy) == false) {
+            const renderAstronaut = document.getElementById('astronaut-home');
+            renderAstronaut.innerHTML = astronautEstate;
+            attempts--;
+            switch(attempts) {
+                case 6:
+            renderAstronaut.innerHTML = '<img src="img/astronaut_0.svg">';
+            break;
+                case 5:
+            renderAstronaut.innerHTML = '<img src="img/astronaut_1.svg">';
+            break;
+                case 4:
+            renderAstronaut.innerHTML = '<img src="img/astronaut_2.svg">';
+            break;
+                case 3:
+                renderAstronaut.innerHTML = '<img src="img/astronaut_3.svg">';
+            break;
+            case 2:
+                renderAstronaut.innerHTML = '<img src="img/astronaut_4.svg">';
+            break;
+            case 1:
+                renderAstronaut.innerHTML = '<img src="img/astronaut_5.svg">';
+            break;
+                
 
+            }
             dynamicWrongLettersList.push(keyy);
             const renderWrongLetters = document.getElementById('wrong-letters'); //Puxa o ID de cada div e incrementa
             renderWrongLetters.innerHTML = dynamicWrongLettersList; //Renderiza no ID puxado acima a letra da palavra.
-            attempts--;
             changeButton(keyy, 'wrongKey');
 
         }
