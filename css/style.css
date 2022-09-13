@@ -20,7 +20,7 @@ html {
 
 /* Mobile */
 
-@media (max-width: 992px) { 
+@media (max-width: 992px) {
 
     html {
 
@@ -72,11 +72,12 @@ html {
     }
 
 
-    .primary-button, .secundary-button {
+    .primary-button,
+    .secundary-button {
 
         font-size: 2em;
-    
-        }
+
+    }
 
 
 
@@ -138,11 +139,12 @@ html {
 
     }
 
-    .primary-button, .secundary-button {
+    .primary-button,
+    .secundary-button {
 
         font-size: 2em;
-    
-        }
+
+    }
 
 
     .game-container {
@@ -159,7 +161,7 @@ body {
     background: linear-gradient(180deg, #2D5CA8 19.27%, #81B1FF 100%);
     background-attachment: fixed;
     background-size: 100%;
-    
+
 }
 
 
@@ -177,7 +179,7 @@ h2 {
 }
 
 header {
-    
+
 
     display: flex;
     padding: 0 var(--padding) 0 var(--padding) !important;
@@ -215,7 +217,7 @@ header {
 
 .logo-icon:hover {
 
-    transform:rotate(20deg);
+    transform: rotate(20deg);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 
 }
@@ -278,7 +280,7 @@ main {
 .col-buttons {
 
     display: flex;
-    gap:var(--gap);
+    gap: var(--gap);
 
 
 }
@@ -378,35 +380,6 @@ main {
 
 }
 
-.modal {
-
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    padding: var(--padding);
-
-
-
-
-}
-
-.modal-active {
-
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    background-color: #00000093;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    padding: var(--padding);
-
-}
-
-
 .close {
     color: white;
     position: absolute;
@@ -414,8 +387,41 @@ main {
     right: 15px;
     font-size: 64px;
     font-weight: bold;
+    cursor: pointer;
 
 }
+
+.modal {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 999px;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 800ms ease-in-out;
+}
+
+
+
+.modal:target {
+    z-index: 9999;
+    background-color: #00000093;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 1;
+    pointer-events: auto;
+    top: 0;
+    overflow: hidden;
+
+
+}
+
 
 
 .add-word-container {
@@ -433,6 +439,7 @@ main {
     justify-content: center;
     align-items: center;
     box-shadow: 10px 10px 21px -10px rgb(0 0 0 / 50%), inset 1px 1px 2px -1px #ffffff;
+    transition: opacity 400ms ease-in;
 
 }
 
@@ -534,7 +541,7 @@ main {
 
 .box-letter:empty {
 
-    display:none;
+    display: none;
 
 }
 
@@ -565,7 +572,7 @@ main {
 
 .tip-text span {
 
-    font-size:large;
+    font-size: large;
     color: white;
 
 }
@@ -586,7 +593,7 @@ main {
     gap: 10px;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    cursor:pointer;
+    cursor: pointer;
     font-size: xx-large;
 }
 
@@ -602,20 +609,22 @@ main {
 
 }
 
-.successKey, .successKey:hover {
+.successKey,
+.successKey:hover {
 
     background-color: green;
-    cursor:not-allowed;
+    cursor: not-allowed;
     animation-name: successButton;
     animation-duration: .5s;
 
 }
 
 
-.wrongKey, .wrongKey:hover {
+.wrongKey,
+.wrongKey:hover {
 
     background-color: grey;
-    cursor:not-allowed;
+    cursor: not-allowed;
     animation-name: wrongButton;
     animation-duration: .5s;
 
@@ -626,74 +635,88 @@ main {
 
 @keyframes wrongButton {
     0% {
-      transform: translateX(0px);
-      timing-function: ease-in;
+        transform: translateX(0px);
+        timing-function: ease-in;
     }
-    37% {
-      transform: translateX(2px);
-      timing-function: ease-out;
-    }
-    55% {
-      transform: translateX(-2px);
-      timing-function: ease-in;
-    }
-    73% {
-      transform: translateX(1px);
-      timing-function: ease-out;
-    }
-    82% {
-      transform: translateX(-1px);
-      timing-function: ease-in;
-    }
-    91% {
-      transform: translateX(1px);
-      timing-function: ease-out;
-    }
-    96% {
-      transform: translateX(-1px);
-      timing-function: ease-in;
-    }
-    100% {
-      transform: translateX(0px);
-      timing-function: ease-in;
-    }
-  }
 
-  @keyframes successButton {
-    0% {
-      transform: scale(1);
-      timing-function: ease-in;
-    }
     37% {
-      transform: scale(1.2);
-      timing-function: ease-out;
+        transform: translateX(2px);
+        timing-function: ease-out;
     }
+
     55% {
-      transform: translateX(-2px);
-      timing-function: ease-in;
+        transform: translateX(-2px);
+        timing-function: ease-in;
     }
+
     73% {
-      transform: translateX(1px);
-      timing-function: ease-out;
+        transform: translateX(1px);
+        timing-function: ease-out;
     }
+
     82% {
-      transform: translateX(-1px);
-      timing-function: ease-in;
+        transform: translateX(-1px);
+        timing-function: ease-in;
     }
+
     91% {
-      transform: translateX(1px);
-      timing-function: ease-out;
+        transform: translateX(1px);
+        timing-function: ease-out;
     }
+
     96% {
-      transform: translateX(-1px);
-      timing-function: ease-in;
+        transform: translateX(-1px);
+        timing-function: ease-in;
     }
+
     100% {
-      transform: translateX(0px);
-      timing-function: ease-in;
+        transform: translateX(0px);
+        timing-function: ease-in;
     }
-  }
-  
+}
+
+@keyframes successButton {
+    0% {
+        transform: scale(1);
+        timing-function: ease-in;
+    }
+
+    37% {
+        transform: scale(1.2);
+        timing-function: ease-out;
+    }
+
+    55% {
+        transform: translateX(-2px);
+        timing-function: ease-in;
+    }
+
+    73% {
+        transform: translateX(1px);
+        timing-function: ease-out;
+    }
+
+    82% {
+        transform: translateX(-1px);
+        timing-function: ease-in;
+    }
+
+    91% {
+        transform: translateX(1px);
+        timing-function: ease-out;
+    }
+
+    96% {
+        transform: translateX(-1px);
+        timing-function: ease-in;
+    }
+
+    100% {
+        transform: translateX(0px);
+        timing-function: ease-in;
+    }
+}
+
 
 
 
@@ -710,7 +733,7 @@ main {
 
 
 #bg-stars {
-    top:0;
+    top: 0;
     right: 0;
     z-index: -1;
     height: 100vh;
@@ -777,7 +800,7 @@ main {
 }
 
 footer {
-    
+
 
     width: 100%;
     background-color: var(--defaultColor);
@@ -794,7 +817,7 @@ footer {
 footer span {
 
     font-family: Arial, Helvetica, sans-serif;
-    font-size:12px;
+    font-size: 12px;
 
 
 }
@@ -822,7 +845,7 @@ footer span {
     align-content: center;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 #descriptionLogo {

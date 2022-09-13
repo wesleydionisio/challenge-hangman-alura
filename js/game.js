@@ -1,3 +1,4 @@
+let gameActive = true;
 let attempts = 6;
 let dynamicList = []; //Lista dinâmica
 let dynamicWrongLettersList = []; //Lista dinâmica
@@ -76,44 +77,63 @@ function checkIfKeyMatches(key) {
     let keyy = key.toLowerCase();
     console.log(keyy);
 
-    if (attempts > 0) {
+    if (gameActive) {
 
         if (splittedSecretWord.includes(keyy)) {
 
-            for(i = 0; i < secretWord.length; i++) {
+            for (i = 0; i < secretWord.length; i++) {
 
-                if(splittedSecretWord[i] == keyy) {
+                if (splittedSecretWord[i] == keyy) {
 
-                dynamicList[i] = keyy;
-                renderWord = document.getElementById(`${(i + 1)}`); //Puxa o ID de cada div e incrementa
-                renderWord.innerHTML = splittedSecretWord[i]; //Renderiza no ID puxado acima a letra da palavra.
+                    dynamicList[i] = keyy;
+                    renderWord = document.getElementById(`${(i + 1)}`); //Puxa o ID de cada div e incrementa
+                    renderWord.innerHTML = splittedSecretWord[i]; //Renderiza no ID puxado acima a letra da palavra.
 
-            }
+                }
 
             }
 
             changeButton(keyy, 'successKey');
 
-        } else {
-            
-            dynamicWrongLettersList.push(' ' + keyy);
+        } else if (gameActive == true & dynamicWrongLettersList.includes(keyy) == false) {
+
+            dynamicWrongLettersList.push(keyy);
             const renderWrongLetters = document.getElementById('wrong-letters'); //Puxa o ID de cada div e incrementa
             renderWrongLetters.innerHTML = dynamicWrongLettersList; //Renderiza no ID puxado acima a letra da palavra.
             attempts--;
-            console.log(attempts);
             changeButton(keyy, 'wrongKey');
-        }
-
-        if (attempts == 0) {
-
-            alert('Perdeu!')
 
         }
 
-        else if (dynamicList.length == splittedSecretWord.length) {
+        switch (checkGameStatus()) {
 
-            alert("Ganhou!")
-
+            case false:
+                alert("Perdeu");
+                break;
+            case true:
+                alert("Venceu!")
+                break;
         }
+
+
     }
+}
+
+function checkGameStatus() {
+
+
+    if (attempts == 0) {
+        gameActive = false
+        return false;
+
+    }
+
+    else if (dynamicList.join('').toLocaleString() == secretWord.toLowerCase()) {
+
+        gameActive = false
+        return true;
+
+    }
+
+
 }
