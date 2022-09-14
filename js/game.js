@@ -125,31 +125,25 @@ function checkIfKeyMatches(key) {
             attempts--;
             switch (attempts) {
                 case 6:
-                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_0.svg')";
-
+                    renderAstronaut.style.backgroundImage = "url('./img/astronaut_0.svg')";
                     break;
                 case 5:
-                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_1.svg')";
-
+                    renderAstronaut.style.backgroundImage = "url('./img/astronaut_1.svg')";
                     break;
                 case 4:
-                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_2.svg')";
-
+                    renderAstronaut.style.backgroundImage = "url('./img/astronaut_2.svg')";
                     break;
                 case 3:
-                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_3.svg')";
-
+                    renderAstronaut.style.backgroundImage = "url('./img/astronaut_3.svg')";
                     break;
                 case 2:
-                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_4.svg')";
-
+                    renderAstronaut.style.backgroundImage = "url('./img/astronaut_4.svg')";
                     break;
                 case 1:
-                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_5.svg')";
-
+                    renderAstronaut.style.backgroundImage = "url('./img/astronaut_5.svg')";
                     break;
                 case 0:
-                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_6.svg')";
+                    renderAstronaut.style.backgroundImage = "url('./img/astronaut_6.svg')";
                     renderAstronaut.classList.remove('float');
                     renderAstronaut.classList.toggle('falling');
                     break;
