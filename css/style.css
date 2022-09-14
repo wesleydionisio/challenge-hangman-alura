@@ -35,7 +35,7 @@ html {
 
     main {
 
-        height: 100%;
+        height: 100vh;
         min-height: min-content;
 
     }
@@ -76,6 +76,12 @@ html {
     .secundary-button {
 
         font-size: 2em;
+
+    }
+
+    #astronaut-home object {
+
+        height: 350px;
 
     }
 
@@ -132,10 +138,10 @@ html {
         width: 450px;
 
     }
+    
+    #astronaut-home object {
 
-    #astronaut-home img {
-
-        height: 400px;
+        height: 600px;
 
     }
 
