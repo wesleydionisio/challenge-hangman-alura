@@ -6,7 +6,8 @@ let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord; //Palvra escolhida divida em letras
 let renderAstronaut = document.getElementById('astronaut-game');
-// let astronautEstate = '<img src="img/astronaut_0.svg">'
+
+
 
 
 
@@ -67,9 +68,27 @@ function renderChoosedWord() { //Renderiza na tela a palavra sorteada e a dica.
 
 renderChoosedWord();
 
+
 function changeButton(key, result) {
 
-    document.getElementById(key).classList.add(result)
+    document.getElementById(key).classList.add(result);
+
+    function buttonLocker() {
+
+        let lockKeyboard = document.getElementById(key);
+        let waitAnimation = setTimeout(toggleLocked, 1000);
+        lockKeyboard.innerHTML = '<div class="loading-spinner disabled"></div>';
+
+        function toggleLocked() {
+
+            lockKeyboard.innerHTML = key;
+
+
+        };
+
+    }
+
+    buttonLocker();
 
 }
 
@@ -78,7 +97,6 @@ function changeButton(key, result) {
 function checkIfKeyMatches(key) {
 
     let keyy = key.toLowerCase();
-    console.log(keyy);
 
     if (gameActive) {
 
@@ -92,9 +110,13 @@ function checkIfKeyMatches(key) {
                     renderWord = document.getElementById(`${(i + 1)}`); //Puxa o ID de cada div e incrementa
                     renderWord.innerHTML = splittedSecretWord[i]; //Renderiza no ID puxado acima a letra da palavra.
 
+
+
                 }
 
             }
+
+
 
             changeButton(keyy, 'successKey');
 
@@ -103,27 +125,35 @@ function checkIfKeyMatches(key) {
             switch (attempts) {
                 case 6:
                     renderAstronaut.style.backgroundImage = "url('../img/astronaut_0.svg')";
+
                     break;
                 case 5:
                     renderAstronaut.style.backgroundImage = "url('../img/astronaut_1.svg')";
+
                     break;
                 case 4:
                     renderAstronaut.style.backgroundImage = "url('../img/astronaut_2.svg')";
+
                     break;
                 case 3:
                     renderAstronaut.style.backgroundImage = "url('../img/astronaut_3.svg')";
+
                     break;
                 case 2:
                     renderAstronaut.style.backgroundImage = "url('../img/astronaut_4.svg')";
+
                     break;
                 case 1:
                     renderAstronaut.style.backgroundImage = "url('../img/astronaut_5.svg')";
+
                     break;
                 case 0:
                     renderAstronaut.style.backgroundImage = "url('../img/astronaut_6.svg')";
                     renderAstronaut.classList.remove('float');
                     renderAstronaut.classList.toggle('falling');
                     break;
+
+
 
 
             }
