@@ -5,7 +5,8 @@ let dynamicWrongLettersList = []; //Lista dinâmica com as letras erradas
 let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord; //Palvra escolhida divida em letras
-let astronautEstate = '<img src="img/astronaut_0.svg">'
+let renderAstronaut = document.getElementById('astronaut-game');
+// let astronautEstate = '<img src="img/astronaut_0.svg">'
 
 
 
@@ -98,29 +99,32 @@ function checkIfKeyMatches(key) {
             changeButton(keyy, 'successKey');
 
         } else if (gameActive == true & dynamicWrongLettersList.includes(keyy) == false) {
-            const renderAstronaut = document.getElementById('astronaut-home');
-            renderAstronaut.innerHTML = astronautEstate;
             attempts--;
-            switch(attempts) {
+            switch (attempts) {
                 case 6:
-            renderAstronaut.innerHTML = '<img src="img/astronaut_0.svg">';
-            break;
+                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_0.svg')";
+                    break;
                 case 5:
-            renderAstronaut.innerHTML = '<img src="img/astronaut_1.svg">';
-            break;
+                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_1.svg')";
+                    break;
                 case 4:
-            renderAstronaut.innerHTML = '<img src="img/astronaut_2.svg">';
-            break;
+                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_2.svg')";
+                    break;
                 case 3:
-                renderAstronaut.innerHTML = '<img src="img/astronaut_3.svg">';
-            break;
-            case 2:
-                renderAstronaut.innerHTML = '<img src="img/astronaut_4.svg">';
-            break;
-            case 1:
-                renderAstronaut.innerHTML = '<img src="img/astronaut_5.svg">';
-            break;
-                
+                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_3.svg')";
+                    break;
+                case 2:
+                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_4.svg')";
+                    break;
+                case 1:
+                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_5.svg')";
+                    break;
+                case 0:
+                    renderAstronaut.style.backgroundImage = "url('../img/astronaut_6.svg')";
+                    renderAstronaut.classList.remove('float');
+                    renderAstronaut.classList.toggle('falling');
+                    break;
+
 
             }
             dynamicWrongLettersList.push(keyy);
