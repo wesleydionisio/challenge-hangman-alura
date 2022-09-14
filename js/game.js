@@ -20,19 +20,19 @@ const words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     },
 
-    // {
+    {
 
-    //     word: 'caderno',
-    //     tip: 'Sempre vem vazio!'
+        word: 'caderno',
+        tip: 'Sempre vem vazio!'
 
-    // },
+    },
 
-    // {
+    {
 
-    //     word: 'celular',
-    //     tip: 'Se usa com as mãos ou com os olhos?'
+        word: 'celular',
+        tip: 'Se usa com as mãos ou com os olhos?'
 
-    // }
+    }
 
 
 ]
@@ -78,11 +78,12 @@ function changeButton(key, result) {
         let lockKeyboard = document.getElementById(key);
         let waitAnimation = setTimeout(toggleLocked, 1000);
         lockKeyboard.innerHTML = '<div class="loading-spinner disabled"></div>';
+        document.getElementById('keyboard-boxes').classList.toggle('locked');
 
         function toggleLocked() {
 
             lockKeyboard.innerHTML = key;
-
+            document.getElementById('keyboard-boxes').classList.toggle('locked');
 
         };
 
