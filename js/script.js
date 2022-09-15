@@ -3,7 +3,8 @@ let inputTip = document.getElementById('input-add-tip');
 let clearButton = document.getElementById('clearUserWords');
 let submitButton = document.getElementById('userSubmit');
 
-clearButton.onclick = function() {
+
+clearButton.onclick = function () {
 
     localStorage.removeItem('wordsList');
     alert('Limpado com sucesso!')
@@ -22,9 +23,10 @@ submitButton.onclick = function () {
         words.push(
             {
 
-                word: inputWord.value,
+                word: convertToSlug(inputWord.value),
                 tip: inputTip.value,
                 isActive: true,
+
             }
 
         )
@@ -36,7 +38,7 @@ submitButton.onclick = function () {
 
     }
 
-    }
+}
 
 
 

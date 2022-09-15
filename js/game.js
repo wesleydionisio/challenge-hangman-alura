@@ -7,6 +7,16 @@ let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord; //Palvra escolhida divida em letras
 let renderAstronaut = document.getElementById('astronaut-game');
 const getWordsList = JSON.parse(localStorage.getItem('wordsList'));
+const delayTime = 800;
+
+function checkWords() {
+
+    if (words.length == 0) {
+        alert('Sem palavras!');
+        gameActive = false;
+    }
+
+}
 
 
 function checkIfCached() {
@@ -24,11 +34,19 @@ function checkIfCached() {
 }
 
 function checkActiveWords() {
-
     let activeWords = words.filter(function (name) { return name.isActive == true; })
     words = activeWords;
-    return words;
+}
 
+
+const convertToSlug = (text) => {
+    const a = 'àáäâãèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
+    const b = 'aaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
+    const p = new RegExp(a.split('').join('|'), 'g')
+    return text.toString().toLowerCase().trim()
+        .replace(p, c => b.charAt(a.indexOf(c))) // Replace special chars
+        .replace(/&/g, '-and-') // Replace & with 'and'
+        .replace(/[\s\W-]+/g, '_') // Replace spaces, non-word characters and dashes with a single dash (-)
 }
 
 
@@ -62,8 +80,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
 ]
 
-checkActiveWords()
-
+checkActiveWords();
 checkIfCached();
 
 
@@ -77,17 +94,28 @@ function chooseRandomWord() { //Escolhe um objeto aleatório do array words.
 }
 
 
+checkWords();
 
 
-chooseRandomWord(); //Chama função para sortear palavra [REMOVER]
+chooseRandomWord(); //Chama função para sortear palavra
+
 
 function renderChoosedWord() { //Renderiza na tela a palavra sorteada e a dica.
 
-
     for (let i = 0; i < splittedSecretWord.length; i++) { //Loop para preencher os boxes com cada palavra.
+
 
         const renderWord = document.getElementById(`${(i + 1)}`); //Puxa o ID de cada div e incrementa
         renderWord.innerHTML = '&nbsp;'; //Renderiza no ID puxado acima a letra da palavra.
+
+    }
+
+    if (splittedSecretWord.includes('_')) {
+
+        dynamicList.push('_');
+        let getIndex = splittedSecretWord.indexOf('_');
+        let addBlankSpace = document.getElementById(getIndex + 1);
+        addBlankSpace.classList.add('blank-space');
 
     }
 
@@ -107,12 +135,11 @@ function changeButton(key, result) {
     function buttonLocker() {
 
         let lockKeyboard = document.getElementById(key);
-        let waitAnimation = setTimeout(toggleLocked, 1000);
+        let loadingSpinner = setTimeout(toggleLocked, delayTime);
         lockKeyboard.innerHTML = '<div class="loading-spinner disabled"></div>';
         document.getElementById('keyboard-boxes').classList.toggle('locked');
 
         function toggleLocked() {
-
             lockKeyboard.innerHTML = key;
             document.getElementById('keyboard-boxes').classList.toggle('locked');
 
@@ -124,7 +151,10 @@ function changeButton(key, result) {
 
 }
 
-
+function delayedWordRender(ie) {
+    renderWord = document.getElementById(`${(ie + 1)}`); //Puxa o ID de cada div e incrementa
+    renderWord.innerHTML = splittedSecretWord[ie]; //Renderiza no ID puxado acima a letra da palavra.
+}
 
 function checkIfKeyMatches(key) {
 
@@ -134,21 +164,15 @@ function checkIfKeyMatches(key) {
 
         if (splittedSecretWord.includes(keyy)) {
 
-            for (i = 0; i < secretWord.length; i++) {
+            for (i = 0; i < splittedSecretWord.length; i++) {
 
                 if (splittedSecretWord[i] == keyy) {
-
                     dynamicList[i] = keyy;
-                    renderWord = document.getElementById(`${(i + 1)}`); //Puxa o ID de cada div e incrementa
-                    renderWord.innerHTML = splittedSecretWord[i]; //Renderiza no ID puxado acima a letra da palavra.
 
-
-
+                    let renderiza = setTimeout(delayedWordRender.bind(null, i), delayTime);
                 }
 
             }
-
-
 
             changeButton(keyy, 'successKey');
 
@@ -179,10 +203,8 @@ function checkIfKeyMatches(key) {
                     renderAstronaut.classList.toggle('falling');
                     break;
 
-
-
-
             }
+
             dynamicWrongLettersList.push(keyy);
             const renderWrongLetters = document.getElementById('wrong-letters'); //Puxa o ID de cada div e incrementa
             renderWrongLetters.innerHTML = dynamicWrongLettersList; //Renderiza no ID puxado acima a letra da palavra.
@@ -190,36 +212,38 @@ function checkIfKeyMatches(key) {
 
         }
 
-        switch (checkGameStatus()) {
-            case false:
-                break;
-            case true:
-                break;
-        }
+        checkGameStatus();
 
 
     }
+
+
 }
+
+
 
 function checkGameStatus() {
 
+    filteredDynamicList = dynamicList.filter(function (e) { return e != null; });
+    filteredSplittedSecretWord = splittedSecretWord.filter(function (e) { return e != '_'; });
+
 
     if (attempts == 0) {
-        document.getElementById('keyboard-boxes').classList.add('disabled')
-        gameActive = false
+        document.getElementById('keyboard-boxes').classList.add('disabled');
+        gameActive = false;
         return false;
 
     }
 
-    else if (dynamicList.join('').toLocaleString() == secretWord.toLowerCase()) {
-        findWord = words.filter(function (name) { return name.word == secretWord; })
+
+    else if (filteredSplittedSecretWord.length == filteredDynamicList.length) {
+        findWord = words.filter(function (name) { return name.word == secretWord; });
         findWord[0].isActive = false;
-        checkActiveWords()
+        checkActiveWords();
+        document.getElementById('keyboard-boxes').classList.add('disabled');
+        gameActive = false;
         // salvar dados
         localStorage.setItem('wordsList', JSON.stringify(words));
-        document.getElementById('keyboard-boxes').classList.add('disabled')
-        gameActive = false
-        alert('Venceu!')
         return true;
 
     }

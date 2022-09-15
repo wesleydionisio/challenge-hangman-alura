@@ -277,7 +277,7 @@ main {
     background-repeat: no-repeat;
     background-position: center;
     transition: all 0.8s;
-    z-index: 999999;
+    z-index: 999;
 
 }
 
@@ -527,12 +527,14 @@ main {
     opacity: 0;
     pointer-events: none;
     transition: all 800ms ease-in-out;
+    z-index: 99999;
+
 }
 
 
 
 .modal:target {
-    z-index: 9999;
+    z-index: 99999;
     background-color: #00000093;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -562,6 +564,7 @@ main {
     align-items: center;
     box-shadow: 10px 10px 21px -10px rgb(0 0 0 / 50%), inset 1px 1px 2px -1px #ffffff;
     transition: opacity 400ms ease-in;
+    z-index: 99999;
 
 }
 
@@ -664,8 +667,14 @@ main {
 .box-letter:empty {
 
     display: none;
-
 }
+
+.blank-space {
+
+    visibility: hidden;
+    
+}
+
 
 .wrong {
 
