@@ -6,47 +6,78 @@ let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord; //Palvra escolhida divida em letras
 let renderAstronaut = document.getElementById('astronaut-game');
+const getWordsList = JSON.parse(localStorage.getItem('wordsList'));
+
+
+function checkIfCached() {
+
+    if (localStorage.wordsList == null) {
+
+        words = words
+
+    } else {
+
+        words = getWordsList;
+
+    }
+
+}
+
+function checkActiveWords() {
+
+    let activeWords = words.filter(function (name) { return name.isActive == true; })
+    words = activeWords;
+    return words;
+
+}
 
 
 
-
-
-const words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
+let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
         word: 'astronauta',
-        tip: 'Já foi para o espaço!'
+        tip: 'Já foi para o espaço!',
+        isActive: true,
 
     },
 
     {
 
         word: 'caderno',
-        tip: 'Sempre vem vazio!'
+        tip: 'Sempre vem vazio!',
+        isActive: true,
 
     },
 
     {
 
         word: 'celular',
-        tip: 'Se usa com as mãos ou com os olhos?'
+        tip: 'Se usa com as mãos ou com os olhos?',
+        isActive: true,
 
     }
 
 
 ]
 
+checkActiveWords()
+
+checkIfCached();
+
+
 function chooseRandomWord() { //Escolhe um objeto aleatório do array words.
 
     const indexWord = parseInt(Math.random() * words.length) //sorteia
-
     secretWord = words[indexWord].word; //define o item word do objeto sorteado
     secretWordTip = words[indexWord].tip; //define o item tip do objeto sorteado
     splittedSecretWord = secretWord.split(''); //Splita a palavra sorteada e transforma em uma array
-    console.log(splittedSecretWord);
 
 }
+
+
+
 
 chooseRandomWord(); //Chama função para sortear palavra [REMOVER]
 
@@ -160,7 +191,6 @@ function checkIfKeyMatches(key) {
         }
 
         switch (checkGameStatus()) {
-
             case false:
                 break;
             case true:
@@ -182,8 +212,14 @@ function checkGameStatus() {
     }
 
     else if (dynamicList.join('').toLocaleString() == secretWord.toLowerCase()) {
+        findWord = words.filter(function (name) { return name.word == secretWord; })
+        findWord[0].isActive = false;
+        checkActiveWords()
+        // salvar dados
+        localStorage.setItem('wordsList', JSON.stringify(words));
         document.getElementById('keyboard-boxes').classList.add('disabled')
         gameActive = false
+        alert('Venceu!')
         return true;
 
     }

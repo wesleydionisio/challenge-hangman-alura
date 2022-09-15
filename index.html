@@ -33,8 +33,7 @@
             <section class="astronaut">
 
                 <div id="astronaut-home">
-                    <!-- <img src="img/astronaut-home.svg"> -->
-                    <object id="astronautembed" data="./img/astronaut.html"></object>
+                    <object id="astronautembed" data="./img/astronaut.html"><img src="img/astronaut-home.svg"></object>
                     
                 </div>
 
@@ -76,13 +75,13 @@
                         <form>
 
                             <label class="label-add-word" for="add-word">Palavra</label>
-                            <input class="input-add-word" type="text" id="input-add-word" placeholder="Palavra escolhida"
+                            <input class="input-add-word" type="text" id="input-add-word" placeholder="Palavra"
                                 required>
 
-                            <label class="label-add-word" for="add-word-theme">Palavra</label>
-                            <input class="input-add-word" type="text" id="input-add-tip" placeholder="Palavra"
+                            <label class="label-add-word" for="add-word-theme">Tema</label>
+                            <input class="input-add-word" type="text" id="input-add-tip" placeholder="Tema"
                                 required>
-
+                            <button type="button" id="clearUserWords" class="secundary-button">Limpar Palavras Salvas</button>
                             <button type="submit" id="userSubmit" class="secundary-button">Salvar</button>
 
                         </form>

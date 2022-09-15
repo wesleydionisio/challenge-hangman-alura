@@ -1,28 +1,42 @@
-
 let inputWord = document.getElementById('input-add-word');
 let inputTip = document.getElementById('input-add-tip');
+let clearButton = document.getElementById('clearUserWords');
 let submitButton = document.getElementById('userSubmit');
 
-userWords = [
+clearButton.onclick = function() {
 
-
-]
-
-
-submitButton.onclick = function() {
-
-    userWords.push(
-        {
-        word: inputWord.value,
-        tip: inputTip.value
-    }
-    
-    )
-    console.log(userWords);
+    localStorage.removeItem('wordsList');
+    alert('Limpado com sucesso!')
 
 }
 
-// salvar dados
-localStorage.setItem('word', JSON.stringify(userWords));
+submitButton.onclick = function () {
 
-const userWordParsed = JSON.parse(localStorage.getItem('word'))
+    if (!inputWord.value || !inputTip.value) {
+
+        alert("Você precisa preencher os campos!");
+
+    } else {
+
+
+        words.push(
+            {
+
+                word: inputWord.value,
+                tip: inputTip.value,
+                isActive: true,
+            }
+
+        )
+
+        alert("Adicionado com sucesso");
+
+        // salvar dados
+        localStorage.setItem('wordsList', JSON.stringify(words));
+
+    }
+
+    }
+
+
+
