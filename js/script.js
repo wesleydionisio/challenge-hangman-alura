@@ -3,6 +3,8 @@ let inputTip = document.getElementById('input-add-tip');
 let clearButton = document.getElementById('clearUserWords');
 let submitButton = document.getElementById('userSubmit');
 
+let userWords = [];
+
 
 clearButton.onclick = function () {
 
@@ -19,10 +21,7 @@ submitButton.onclick = function () {
 
     } else {
 
-        if(words == undefined)
-
-
-        words.push(
+        userWords.push(
             {
 
                 word: convertToSlug(inputWord.value),
@@ -38,7 +37,7 @@ submitButton.onclick = function () {
         alert("Adicionado com sucesso");
 
         // salvar dados
-        localStorage.setItem('wordsList', JSON.stringify(words));
+        localStorage.setItem('userWordsList', JSON.stringify(userWords));
 
     }
 

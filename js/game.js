@@ -6,7 +6,7 @@ let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord; //Palvra escolhida divida em letras
 let renderAstronaut = document.getElementById('astronaut-game');
-
+let words = [];
 let userCheckbox = document.getElementById('switch-1');
 let tipCheckbox = document.getElementById('switch-2');
 
@@ -14,7 +14,8 @@ let useDefaultButton = document.getElementById('useDefault');
 
 let isOnlyUserWords = JSON.parse(localStorage.getItem('userOption')); //or false
 let isTipHidden = JSON.parse(localStorage.getItem('userTipOption')); //or false
-const getWordsList = JSON.parse(localStorage.getItem('wordsList'));
+
+let getuserWordsList = JSON.parse(localStorage.getItem('userWordsList'));
 
 const delayTime = 800;
 
@@ -27,27 +28,17 @@ function reload() {
 function checkWords() {
 
     if (words.length == 0) {
-        localStorage.removeItem('wordsList');
-        document.location.hash = '#modal-no-words';        
+        localStorage.removeItem('userWordsList');
         gameActive = false;
     }
 
 }
 
-useDefaultButton.onclick = function () {
-
-    isOnlyUserWords = false;
-    localStorage.clear();
-    setTimeout(function () { window.location.href = './game.html';}, 800)
-
-
-}
-
 function checkIfCached() {
 
-    if (localStorage.wordsList != null) {
+    if (getuserWordsList != null) {
 
-        words = getWordsList;
+        words = words.concat(getuserWordsList);
 
     }
 
@@ -82,7 +73,7 @@ const convertToSlug = (text) => {
 }
 
 
-let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
+words = words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
@@ -113,7 +104,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'pau brasil',
+        word: 'pau_brasil',
         tip: 'Árvore',
         isActive: true,
         userAdded: false,
@@ -122,7 +113,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'Michael Jackson',
+        word: 'michael_jackson',
         tip: 'Cantor',
         isActive: true,
         userAdded: false,
@@ -131,7 +122,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'Rainha Elizabeth',
+        word: 'rainha_elizabeth',
         tip: 'Rest in Peace',
         isActive: true,
         userAdded: false,
@@ -140,7 +131,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'Cachorro Quente',
+        word: 'cachorro_quente',
         tip: 'Comida',
         isActive: true,
         userAdded: false,
@@ -149,7 +140,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'Grêmio',
+        word: 'gremio',
         tip: 'Gigante',
         isActive: true,
         userAdded: false,
@@ -158,7 +149,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'Among US',
+        word: 'among_us',
         tip: 'Impostor',
         isActive: true,
         userAdded: false,
@@ -167,16 +158,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'celular',
-        tip: 'Se usa com as mãos ou com os olhos?',
-        isActive: true,
-        userAdded: false,
-
-    },
-
-    {
-
-        word: 'Pringles',
+        word: 'pringles',
         tip: 'Comida em cilindro',
         isActive: true,
         userAdded: false,
@@ -185,7 +167,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'Bora Bill',
+        word: 'bora_bill',
         tip: 'Viral',
         isActive: true,
         userAdded: false,
@@ -194,7 +176,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
     {
 
-        word: 'Oracle One',
+        word: 'oracle_one',
         tip: 'Melhor curso já feito',
         isActive: true,
         userAdded: false,
@@ -203,17 +185,26 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
 ];
 
-checkActiveWords();
+const defaultWords = words;
+
 checkIfCached();
 
-const defaultWords = words;
-let wordsOnlyUserWords = words.filter(function (p) { return p.userAdded == true });
+checkActiveWords();
 
 userCheckbox.onclick = function () {
 
     changeUserCustomWords();
 
 };
+
+useDefaultButton.onclick = function () {
+
+    isOnlyUserWords = false;
+    localStorage.clear();
+    setTimeout(function () { window.location.href = './game.html'; }, 800);
+
+
+}
 
 tipCheckbox.onclick = function () {
 
@@ -237,12 +228,20 @@ function changeTip() {
 
 }
 
-if (isOnlyUserWords) {
+if (isOnlyUserWords == true && words.length == null) {
+    words = defaultWords
+    isOnlyUserWords = false;
+    userCheckbox.checked = false;
+    localStorage.removeItem('userWordsList');
 
-    words = wordsOnlyUserWords;
+}
+
+else if (isOnlyUserWords) {
+
+    words = getuserWordsList;
     userCheckbox.checked = true;
 
-} else {
+} else if(!isOnlyUserWords) {
 
     words = defaultWords;
     userCheckbox.checked = false;
@@ -405,7 +404,7 @@ function checkGameStatus() {
     if (attempts == 0) {
         document.getElementById('keyboard-boxes').classList.add('disabled');
         gameActive = false;
-        setTimeout(function () {document.location.hash = '#try-again'}, 1500);
+        setTimeout(function () { document.location.hash = '#try-again' }, 1500);
         return false;
 
     }
@@ -419,7 +418,7 @@ function checkGameStatus() {
         gameActive = false;
         document.location.hash = '#winner';
         // salvar dados
-        localStorage.setItem('wordsList', JSON.stringify(words));
+        localStorage.setItem('userWordsList', JSON.stringify(words));
         return true;
 
     }
