@@ -19,6 +19,8 @@ submitButton.onclick = function () {
 
     } else {
 
+        if(words == undefined)
+
 
         words.push(
             {

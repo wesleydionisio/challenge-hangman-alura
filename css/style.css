@@ -462,6 +462,14 @@ main {
 
 }
 
+#clearUserWords {
+
+    background-color: transparent !important;
+    border: solid 2px var(--defaultColor);
+    color: var(--defaultColor);
+
+}
+
 .secundary-button {
 
     display: flex;
