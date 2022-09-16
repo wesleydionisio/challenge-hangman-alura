@@ -38,7 +38,7 @@ useDefaultButton.onclick = function () {
 
     isOnlyUserWords = false;
     localStorage.clear();
-    setTimeout(function () { window.location.href = './index.html';}, 800)
+    setTimeout(function () { window.location.href = './game.html';}, 800)
 
 
 }
