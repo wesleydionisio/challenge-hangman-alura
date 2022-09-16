@@ -6,25 +6,10 @@ let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord; //Palvra escolhida divida em letras
 let renderAstronaut = document.getElementById('astronaut-game');
+let userCheckbox = document.getElementById('switch-1');
+let isOnlyUserWords = JSON.parse(localStorage.getItem('userOption')); //or false
 const getWordsList = JSON.parse(localStorage.getItem('wordsList'));
 const delayTime = 800;
-let getUserWordsOnlyCheckbox = document.getElementById('switch-1');
-let getUserWordsOption = JSON.parse(localStorage.getItem('userWordOption'));
-let userWordsOnlyCheckbox = false;
-
-
-if (getUserWordsOption == true) {
-
-    userWordsOnlyCheckbox = getUserWordsOption;
-
-} 
-
-function changeCheckboxState(status) {
-
-    let checkbox = getUserWordsOnlyCheckbox.checked = status
-
-}
-
 
 
 function reload() {
@@ -50,6 +35,12 @@ function checkIfCached() {
 
     }
 
+    if (isOnlyUserWords == null) {
+
+        isOnlyUserWords = false;
+    
+    }
+
 }
 
 function checkActiveWords() {
@@ -67,7 +58,6 @@ const convertToSlug = (text) => {
         .replace(/&/g, '-and-') // Replace & with 'and'
         .replace(/[\s\W-]+/g, '_') // Replace spaces, non-word characters and dashes with a single dash (-)
 }
-
 
 
 let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
@@ -101,48 +91,33 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 
 ];
 
-defaultWords = words;
-onlyUserWords = words.filter(function (f) { return f.userAdded == true; });
-
-
-if (userWordsOnlyCheckbox == true) {
-
-    words = onlyUserWords
-
-} else if (userWordsOnlyCheckbox == false) {
-
-    words = defaultWords;
-
-}
-
-
 checkActiveWords();
 checkIfCached();
 
-getUserWordsOnlyCheckbox.onclick = function () {
+let defaultWords = words;
+let wordsOnlyUserWords = words.filter(function (p) { return p.userAdded == true });
 
-    if (userWordsOnlyCheckbox == true) {
+userCheckbox.onclick = function () {
 
-        userWordsOnly = false
-        userWordsOnlyCheckbox = true;
+    changeUserPreference();
 
-    }
+};
 
-    else if (userWordsOnlyCheckbox == false) {
+function changeUserPreference() {
 
-        userWordsOnly = true;
-        userWordsOnlyCheckbox = false;
-
-
-    } 
-
-
-localStorage.setItem('userWordOption', JSON.stringify(userWordsOnlyCheckbox));
-
+    isOnlyUserWords = isOnlyUserWords != true;
+    localStorage.setItem('userOption', JSON.stringify(isOnlyUserWords)); //Salva a opção do usuário em cache
+    setTimeout(function () {window.location.reload()}, 1000)
 
 }
 
-changeCheckboxState(userWordsOnlyCheckbox);
+if (isOnlyUserWords) {
+
+    words = wordsOnlyUserWords;
+    userCheckbox.checked = true;
+
+}
+
 
 
 function chooseRandomWord() { //Escolhe um objeto aleatório do array words.
@@ -311,4 +286,5 @@ function checkGameStatus() {
 
 
 }
+
 
