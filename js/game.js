@@ -96,7 +96,70 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
     {
 
         word: 'caderno',
-        tip: 'Sempre vem vazio!',
+        tip: 'Alguns usam para anotar!',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'celular',
+        tip: 'É tecnológico!',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'pau brasil',
+        tip: 'Árvore',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'Michael Jackson',
+        tip: 'Cantor',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'Rainha Elizabeth',
+        tip: 'Rest in Peace',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'Cachorro Quente',
+        tip: 'Comida',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'Grêmio',
+        tip: 'Gigante',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'Among US',
+        tip: 'Impostor',
         isActive: true,
         userAdded: false,
 
@@ -109,7 +172,34 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
         isActive: true,
         userAdded: false,
 
-    }
+    },
+
+    {
+
+        word: 'Pringles',
+        tip: 'Comida em cilindro',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'Bora Bill',
+        tip: 'Viral',
+        isActive: true,
+        userAdded: false,
+
+    },
+
+    {
+
+        word: 'Oracle One',
+        tip: 'Melhor curso já feito',
+        isActive: true,
+        userAdded: false,
+
+    },
 
 ];
 
