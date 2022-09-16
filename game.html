@@ -18,7 +18,7 @@
 <body>
 
     <header>
-        <div class="back-button" onclick="history.back()"><img src="img/back-icon.svg"></div>
+        <div class="back-button"><a href="/index.html"><img src="img/back-icon.svg"></a></div>
         <div class="logo-icon"><a href="index.html"><img src="img/logo-icon.svg"></a></div>
     </header>
 
@@ -28,7 +28,6 @@
             <section class="astronaut">
 
                 <div id="astronaut-game" class="float">
-                    <!-- <img src="img/astronaut_0.svg"> -->
                 </div>
 
             </section>
@@ -69,7 +68,8 @@
 
                         </div>
 
-                        <section class="tip-text"><img src="img/tip-icon.svg"><span id="render-tip"></span>
+                        <section id="tip-text" class="tip-text"><img src="img/tip-icon.svg"><span
+                                id="render-tip"></span>
 
                     </div>
 
@@ -124,7 +124,6 @@
                     <section class="add-word-container">
                         <section class="title" id="winner-title">
                             <h1>ADICIONE PALAVRAS</h1>
-                            <!-- <h2>ÓTIMO PARA JOGAR COM OS AMIGOS!</h2> -->
                         </section>
 
                         <section class="section-form-add-word">
@@ -135,12 +134,68 @@
 
                 </div>
 
+                <div id="modal-no-words" class="modal">
+                    <a href="#close"> <span class="close">&times;</span></a>
+
+                    <section class="add-word-container">
+                        <section class="title" id="winner-title">
+                            <h1>OPS, OCORREU UM ERRO!</h1>
+                            <h2>VOCÊ PRECISA ADICIONAR MAIS PALAVRAS!</h2>
+                        </section>
+                        <a href="/index.html#modal-add-word">
+                            <button id="goAdd" class="secundary-button">ADICIONAR PALAVRAS</button>
+                        </a>
+
+                        <button id="useDefault" class="secundary-button">USAR PALAVRAS ALEATÓRIAS</button>
+                        <section class="section-form-add-word">
+
+                        </section>
+
+                    </section>
+
+                </div>
+
+                <div id="winner" class="modal">
+
+                    <section class="add-word-container">
+                        <div class="astronaut-win"><img src="/img/astronaut-winner.svg"></div>
+                        <section class="title" id="winner-title">
+                            <h1>YEEBAA, VOCÊ VENCEU!</h1>
+                        </section>
+                        <a href="/game.html">
+                            <button id="goAdd" class="secundary-button">JOGUE NOVAMENTE</button>
+                        </a>
+
+                        </section>
+
+                    </section>
+
+                </div>
+
+                <div id="try-again" class="modal">
+
+                    <section class="add-word-container">
+                        <div class="astronaut-win"><img src="/img/astronaut-ops.svg"></div>
+                        <section class="title" id="winner-title">
+                            <h1>Infelizmente não foi dessa vezz!</h1>
+                        </section>
+                        <a href="/game.html">
+                            <button id="goAdd" class="secundary-button">TENTAR NOVAMENTE</button>
+                        </a>
+
+                        </section>
+
+                    </section>
+
+                </div>
+
                 <div class="sidebar-tools">
 
-                        <div id="refresh" onclick="reload()"><img src="img/reload.svg"></div>
+                    <div id="refresh" onclick="reload()"><img src="img/reload.svg"></div>
 
-                        <div id="config" onclick="javascript:location.href='#modal-settings'"><img src="img/config.svg"></div>
-                    
+                    <div id="config" onclick="javascript:location.href='#modal-settings'"><img src="img/config.svg">
+                    </div>
+
                 </div>
 
                 <div id="modal-settings" class="modal">
@@ -152,14 +207,20 @@
                         </section>
 
                         <section class="section-settings">
-                            <div class="settings-row-1">
-                            Apenas palavras do usuário
-                            <input type="checkbox" class="switch" id="switch-1"/>
-                        </div>
-                        
-                        </section>
+                            <div id="no-words-error" class="settings-row">
+                                Apenas palavras do usuário
+                                <input type="checkbox" class="switch" id="switch-1" />
+                            </div>
+                            <div id=""></div>
 
-                    </section>
+                            <section class="section-settings">
+                                <div class="settings-row">
+                                    Ocultar Dicas
+                                    <input type="checkbox" class="switch" id="switch-2" />
+                                </div>
+                            </section>
+
+                        </section>
 
                 </div>
 

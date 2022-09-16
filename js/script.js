@@ -42,10 +42,12 @@ submitButton.onclick = function () {
 
 }
 
+copy.addEventListener("pointerdown", () => navigator.clipboard.writeText(window.location.href))
+
 
 document.addEventListener('touchmove', function (e) { }, false);
 
-var _switch = document.getElementById("switch-1"),
+var _switch = document.querySelectorAll("#switch-1, #switch-2"),
     switchHit = false,
     hasTouch = false;
 

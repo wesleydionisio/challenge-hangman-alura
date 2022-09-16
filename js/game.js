@@ -6,9 +6,16 @@ let secretWord; //Palavra escolhida
 let secretWordTip; //Dica da palavra escolhida
 let splittedSecretWord; //Palvra escolhida divida em letras
 let renderAstronaut = document.getElementById('astronaut-game');
+
 let userCheckbox = document.getElementById('switch-1');
+let tipCheckbox = document.getElementById('switch-2');
+
+let useDefaultButton = document.getElementById('useDefault');
+
 let isOnlyUserWords = JSON.parse(localStorage.getItem('userOption')); //or false
+let isTipHidden = JSON.parse(localStorage.getItem('userTipOption')); //or false
 const getWordsList = JSON.parse(localStorage.getItem('wordsList'));
+
 const delayTime = 800;
 
 
@@ -20,12 +27,21 @@ function reload() {
 function checkWords() {
 
     if (words.length == 0) {
-        alert('Sem palavras!');
+        localStorage.removeItem('wordsList');
+        document.location.hash = '#modal-no-words';        
         gameActive = false;
     }
 
 }
 
+useDefaultButton.onclick = function () {
+
+    isOnlyUserWords = false;
+    localStorage.removeItem('wordsList');
+    setTimeout(function () { window.location.reload() }, 1000)
+
+
+}
 
 function checkIfCached() {
 
@@ -38,7 +54,13 @@ function checkIfCached() {
     if (isOnlyUserWords == null) {
 
         isOnlyUserWords = false;
-    
+
+    }
+
+    if (isTipHidden == null) {
+
+        isTipHidden = false;
+
     }
 
 }
@@ -94,20 +116,34 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
 checkActiveWords();
 checkIfCached();
 
-let defaultWords = words;
+const defaultWords = words;
 let wordsOnlyUserWords = words.filter(function (p) { return p.userAdded == true });
 
 userCheckbox.onclick = function () {
 
-    changeUserPreference();
+    changeUserCustomWords();
 
 };
 
-function changeUserPreference() {
+tipCheckbox.onclick = function () {
+
+    changeTip();
+
+};
+
+function changeUserCustomWords() {
 
     isOnlyUserWords = isOnlyUserWords != true;
     localStorage.setItem('userOption', JSON.stringify(isOnlyUserWords)); //Salva a opção do usuário em cache
-    setTimeout(function () {window.location.reload()}, 1000)
+    setTimeout(function () { window.location.reload() }, 1000)
+
+}
+
+function changeTip() {
+
+    isTipHidden = isTipHidden != true;
+    localStorage.setItem('userTipOption', JSON.stringify(isTipHidden)); //Salva a opção do usuário em cache
+    setTimeout(function () { window.location.reload() }, 1000)
 
 }
 
@@ -116,8 +152,20 @@ if (isOnlyUserWords) {
     words = wordsOnlyUserWords;
     userCheckbox.checked = true;
 
+} else {
+
+    words = defaultWords;
+    userCheckbox.checked = false;
+
 }
 
+if (isTipHidden) {
+
+    document.getElementById('keyboard-boxes').classList.toggle('locked');
+    document.getElementById('tip-text').classList.toggle('hidden');
+    tipCheckbox.checked = true;
+
+}
 
 
 function chooseRandomWord() { //Escolhe um objeto aleatório do array words.
@@ -267,6 +315,7 @@ function checkGameStatus() {
     if (attempts == 0) {
         document.getElementById('keyboard-boxes').classList.add('disabled');
         gameActive = false;
+        setTimeout(function () {document.location.hash = '#try-again'}, 1500);
         return false;
 
     }
@@ -278,6 +327,7 @@ function checkGameStatus() {
         checkActiveWords();
         document.getElementById('keyboard-boxes').classList.add('disabled');
         gameActive = false;
+        document.location.hash = '#winner';
         // salvar dados
         localStorage.setItem('wordsList', JSON.stringify(words));
         return true;
