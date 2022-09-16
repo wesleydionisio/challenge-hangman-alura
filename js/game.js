@@ -38,7 +38,7 @@ useDefaultButton.onclick = function () {
 
     isOnlyUserWords = false;
     localStorage.clear();
-    setTimeout(function () { window.location.reload() }, 1000)
+    setTimeout(function () { window.location.reload() }, 800)
 
 
 }
