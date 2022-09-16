@@ -8,10 +8,28 @@ let splittedSecretWord; //Palvra escolhida divida em letras
 let renderAstronaut = document.getElementById('astronaut-game');
 const getWordsList = JSON.parse(localStorage.getItem('wordsList'));
 const delayTime = 800;
+let getUserWordsOnlyCheckbox = document.getElementById('switch-1');
+let getUserWordsOption = JSON.parse(localStorage.getItem('userWordOption'));
+let userWordsOnlyCheckbox = false;
+
+
+if (getUserWordsOption == true) {
+
+    userWordsOnlyCheckbox = getUserWordsOption;
+
+} 
+
+function changeCheckboxState(status) {
+
+    let checkbox = getUserWordsOnlyCheckbox.checked = status
+
+}
+
+
 
 function reload() {
 
-    window.location.reload()    
+    window.location.reload()
 }
 
 function checkWords() {
@@ -26,11 +44,7 @@ function checkWords() {
 
 function checkIfCached() {
 
-    if (localStorage.wordsList == null) {
-
-        words = words
-
-    } else {
+    if (localStorage.wordsList != null) {
 
         words = getWordsList;
 
@@ -63,6 +77,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
         word: 'astronauta',
         tip: 'Já foi para o espaço!',
         isActive: true,
+        userAdded: false,
 
     },
 
@@ -71,6 +86,7 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
         word: 'caderno',
         tip: 'Sempre vem vazio!',
         isActive: true,
+        userAdded: false,
 
     },
 
@@ -79,14 +95,54 @@ let words = [ //Array com os objetos constando a palavra (word) e Dica (tip)
         word: 'celular',
         tip: 'Se usa com as mãos ou com os olhos?',
         isActive: true,
+        userAdded: false,
 
     }
 
+];
 
-]
+defaultWords = words;
+onlyUserWords = words.filter(function (f) { return f.userAdded == true; });
+
+
+if (userWordsOnlyCheckbox == true) {
+
+    words = onlyUserWords
+
+} else if (userWordsOnlyCheckbox == false) {
+
+    words = defaultWords;
+
+}
+
 
 checkActiveWords();
 checkIfCached();
+
+getUserWordsOnlyCheckbox.onclick = function () {
+
+    if (userWordsOnlyCheckbox == true) {
+
+        userWordsOnly = false
+        userWordsOnlyCheckbox = true;
+
+    }
+
+    else if (userWordsOnlyCheckbox == false) {
+
+        userWordsOnly = true;
+        userWordsOnlyCheckbox = false;
+
+
+    } 
+
+
+localStorage.setItem('userWordOption', JSON.stringify(userWordsOnlyCheckbox));
+
+
+}
+
+changeCheckboxState(userWordsOnlyCheckbox);
 
 
 function chooseRandomWord() { //Escolhe um objeto aleatório do array words.

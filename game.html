@@ -67,12 +67,6 @@
 
                             <div class="box-letter" id="14"></div>
 
-
-
-
-
-
-
                         </div>
 
                         <section class="tip-text"><img src="img/tip-icon.svg"><span id="render-tip"></span>
@@ -119,13 +113,11 @@
                             <div class="box-keyboard" onclick="checkIfKeyMatches('y')" id="y">Y</div>
                             <div class="box-keyboard" onclick="checkIfKeyMatches('z')" id="z">Z</div>
 
-
-
-
                         </div>
 
                     </div>
                 </div>
+
                 <div id="modal-add-word" class="modal">
                     <a href="#close"> <span class="close">&times;</span></a>
 
@@ -144,8 +136,31 @@
                 </div>
 
                 <div class="sidebar-tools">
-                    <div id="refresh" onclick="reload()"><img src="img/reload.svg"></div>
-                    <div id="config"><img src="img/config.svg"></div>
+
+                        <div id="refresh" onclick="reload()"><img src="img/reload.svg"></div>
+
+                        <div id="config" onclick="javascript:location.href='#modal-settings'"><img src="img/config.svg"></div>
+                    
+                </div>
+
+                <div id="modal-settings" class="modal">
+                    <a href="#close"> <span class="close">&times;</span></a>
+
+                    <section class="add-word-container" id="modal-settings-container">
+                        <section class="title" id="winner-title">
+                            <h1>AJUSTES</h1>
+                        </section>
+
+                        <section class="section-settings">
+                            <div class="settings-row-1">
+                            Apenas palavras do usuário
+                            <input type="checkbox" class="switch" id="switch-1"/>
+                        </div>
+                        
+                        </section>
+
+                    </section>
+
                 </div>
 
                 <div id="bg-stars">
