@@ -9,6 +9,11 @@ let renderAstronaut = document.getElementById('astronaut-game');
 const getWordsList = JSON.parse(localStorage.getItem('wordsList'));
 const delayTime = 800;
 
+function reload() {
+
+    window.location.reload()    
+}
+
 function checkWords() {
 
     if (words.length == 0) {
@@ -120,7 +125,7 @@ function renderChoosedWord() { //Renderiza na tela a palavra sorteada e a dica.
     }
 
     const renderTip = document.getElementById('render-tip'); //Puxa o ID da Dica.
-    renderTip.innerHTML = "Dica: " + secretWordTip //Renderiza no ID da Dica.
+    renderTip.innerHTML = "Tema: " + secretWordTip //Renderiza no ID da Dica.
 
 
 }
