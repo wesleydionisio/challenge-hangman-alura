@@ -37,7 +37,7 @@ function checkWords() {
 useDefaultButton.onclick = function () {
 
     isOnlyUserWords = false;
-    localStorage.removeItem('wordsList');
+    localStorage.clear();
     setTimeout(function () { window.location.reload() }, 1000)
 
 
