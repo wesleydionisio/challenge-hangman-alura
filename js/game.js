@@ -11,10 +11,8 @@ let userCheckbox = document.getElementById('switch-1');
 let tipCheckbox = document.getElementById('switch-2');
 
 let useDefaultButton = document.getElementById('useDefault');
-
 let isOnlyUserWords = JSON.parse(localStorage.getItem('userOption')); //or false
 let isTipHidden = JSON.parse(localStorage.getItem('userTipOption')); //or false
-
 let getuserWordsList = JSON.parse(localStorage.getItem('userWordsList'));
 
 const delayTime = 800;
@@ -416,7 +414,7 @@ function checkGameStatus() {
         checkActiveWords();
         document.getElementById('keyboard-boxes').classList.add('disabled');
         gameActive = false;
-        document.location.hash = '#winner';
+        setTimeout(function () { document.location.hash = '#winner' }, 1500);
         // salvar dados
         localStorage.setItem('userWordsList', JSON.stringify(words));
         return true;

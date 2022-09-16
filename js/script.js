@@ -2,9 +2,7 @@ let inputWord = document.getElementById('input-add-word');
 let inputTip = document.getElementById('input-add-tip');
 let clearButton = document.getElementById('clearUserWords');
 let submitButton = document.getElementById('userSubmit');
-
 let userWords = [];
-
 
 clearButton.onclick = function () {
 

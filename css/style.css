@@ -35,7 +35,6 @@ html {
 
     main {
 
-        margin: 20px 0 20px 0;
         min-height: 100vh;
 
     }
@@ -82,6 +81,14 @@ html {
     #astronaut-home img {
 
         height: 350px;
+
+    }
+
+    #astronaut-game {
+
+        width: 322px;
+        height: 300px;
+        background-size: 200px;
 
     }
 
@@ -158,6 +165,15 @@ html {
         width: 600px;
 
     }
+
+    #astronaut-game {
+
+        width: 322px;
+        height: 450px;
+        background-size: 300px;
+
+    }
+
 
 }
 
@@ -271,12 +287,9 @@ main {
 }
 
 #astronaut-game {
-    width: 322px;
-    height: 482px;
     background-image: url('../img/astronaut_0.svg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 250px;
     transition: all 0.8s;
     z-index: 999;
 
@@ -970,7 +983,7 @@ main {
     height: auto;
 
 }
-    
+
 
 .section-settings {
     width: 100%;
